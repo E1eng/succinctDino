@@ -24,7 +24,6 @@ let gameRunning = false;
 setPixelToWorldScale();
 window.addEventListener("resize", setPixelToWorldScale);
 
-// Update permainan setiap frame
 function update(time) {
   if (!gameRunning) return;
 
@@ -47,13 +46,12 @@ function update(time) {
   window.requestAnimationFrame(update);
 }
 
-// Cek apakah permainan kalah
 function checkLose() {
   const dinoRect = getDinoRect();
   return getCactusRects().some(rect => isCollision(rect, dinoRect));
 }
 
-// Fungsi untuk memeriksa tabrakan
+
 function isCollision(rect1, rect2) {
   return (
     rect1.left < rect2.right &&
@@ -63,7 +61,6 @@ function isCollision(rect1, rect2) {
   );
 }
 
-// Menangani keadaan kalah
 function handleLose() {
   gameRunning = false;
   setDinoLose();
@@ -71,26 +68,23 @@ function handleLose() {
   finalScoreElem.textContent = `High Score: ${Math.floor(highScore)}`;
   gameOver();
 
-  // Reset game state dan pasang event listener untuk memulai ulang game
-  document.removeEventListener('click', handleStart); // Menghapus event listener lama
-  document.removeEventListener('keydown', handleStart); // Menghapus event listener lama
-  document.addEventListener('click', handleStart); // Menambahkan listener baru untuk memulai ulang game
-  document.addEventListener('keydown', handleStart); // Menambahkan listener baru untuk memulai ulang game
+  // Reset game state 
+  document.removeEventListener('click', handleStart);
+  document.removeEventListener('keydown', handleStart); 
+  document.addEventListener('click', handleStart);
+  document.addEventListener('keydown', handleStart); 
 }
 
-// Mengatur kecepatan permainan
 function updateSpeedScale(delta) {
   speedScale += delta * SPEED_SCALE_INCREASE;
 }
 
-// Memperbarui skor permainan
 function updateScore(delta) {
   score += delta * 0.01;
   scoreElem.textContent = Math.floor(score);
   checkHighScore();
 }
 
-// Memeriksa dan memperbarui highscore
 function checkHighScore() {
   if (score > highScore) {
     highScore = Math.floor(score);
@@ -99,12 +93,11 @@ function checkHighScore() {
   }
 }
 
-// Menangani mulai permainan
 function handleStart() {
-  if (gameRunning) return; // Jika permainan sudah berjalan, tidak perlu apa-apa
+  if (gameRunning) return; 
 
   gameRunning = true;
-  lastTime = null; // Reset lastTime untuk memulai permainan
+  lastTime = null;
   speedScale = 1;
   score = 0;
 
@@ -115,16 +108,14 @@ function handleStart() {
   gameOverElem.classList.add("hide");
   highScoreElem.textContent = `H: ${highScore}`;
 
-  window.requestAnimationFrame(update); // Pastikan frame animasi dimulai
+  window.requestAnimationFrame(update); 
 }
 
-// Menangani lompat
 function handleJump() {
   if (!gameRunning) return;
   jumpSound.play();
 }
 
-// Mengatur ukuran dunia permainan berdasarkan layar
 function setPixelToWorldScale() {
   let worldToPixelScale;
   if (window.innerWidth / window.innerHeight < WORLD_WIDTH / WORLD_HEIGHT) {
@@ -136,32 +127,28 @@ function setPixelToWorldScale() {
   worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`;
 }
 
-// Mengatur suara lompat
 function jump() {
   jumpSound.play();
 }
 
-// Mengatur suara game over
 function gameOver() {
   gameoverSound.play();
 }
 
-// Event listener untuk memulai permainan (klik atau spasi)
 document.addEventListener('click', () => {
   if (!gameRunning) {
-    handleStart(); // Mulai permainan jika belum dimulai
+    handleStart(); 
   } else {
-    handleJump(); // Jika permainan sudah dimulai, lompat
+    handleJump(); 
   }
 });
 
 document.addEventListener('keydown', function(event) {
-  if (event.key === ' ' && gameRunning) { // Hanya lompat jika permainan sedang berjalan
-    handleJump(); // Memicu lompat jika permainan berjalan
+  if (event.key === ' ' && gameRunning) { 
+    handleJump(); 
   }
 });
 
-// Update waktu dan tanggal di layar
 function updateDateTime() {
   const dateElement = document.getElementById('date');
   const timeElement = document.getElementById('time');
