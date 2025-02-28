@@ -1,0 +1,383 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('imgs/background.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.world {
+  overflow: hidden;
+  position: relative;
+  background-color: #f4f4f4;
+  border: 2px solid #a0a0a0;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1000px;
+  max-height: 600px;
+}
+
+.title-bar {
+  background: linear-gradient(to bottom, #c0c0c0, #a0a0a0);
+  color: black;
+  padding: 8px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #808080;
+  cursor: move;
+}
+
+.window-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.control-button {
+  width: 20px;
+  height: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #808080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.control-button:hover {
+  background-color: #d0d0d0;
+}
+
+.game-container {
+  flex: 1;
+  position: relative;
+  background-color: rgb(36, 35, 35);
+}
+
+.score-container {
+  position: absolute;
+  top: 2vmin;
+  right: 2vmin;
+  display: flex;
+  flex-direction: row;
+  gap: 1vmin;
+  align-items: center;
+}
+
+.score {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5vmin;
+  color: #FF69B4; 
+  padding: 0.5vmin 1vmin;
+  border-radius: 8px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.high-score {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5vmin;
+  color: #00BFFF; 
+  padding: 0.5vmin 1vmin;
+  border-radius: 8px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+}
+
+.start-screen {
+  font-size: 3vmin;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.game-over {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  padding: 3rem;
+  color: #00BFFF; 
+  font-size: 2vmin;
+  border: 3px solid #00BFFF;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
+  font-family: 'Press Start 2P', cursive;
+}
+
+.game-over h2 {
+  margin: 0 0 1rem 0;
+  font-size: 3vmin;
+}
+
+.game-over p {
+  font-size: 1.6vmin;
+  margin: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.ground {
+  --left: 0;
+  position: absolute;
+  width: 300%;
+  bottom: 0;
+  left: calc(var(--left) * 1%);
+}
+
+.dino {
+  --bottom: 0;
+  position: absolute;
+  left: 5%;
+  height: 16vmin;
+  bottom: calc(var(--bottom) * 1%);
+}
+
+.cactus {
+  position: absolute;
+  left: calc(var(--left) * 1%);
+  height: 14vmin;
+  bottom: 0;
+}
+
+.hide {
+  display: none;
+}
+
+/* Taskbar styling */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 45px; /* Lebih tinggi seperti taskbar Windows 11 */
+  background-color: #c0c0c0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border-top: 2px solid #b4afaf;
+  padding: 0 20px;
+}
+
+/* Centered taskbar apps */
+.taskbar-apps {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.taskbar-app-icon {
+  width: 36px; /* Ikon lebih besar dan proporsional */
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px; /* Sedikit membulatkan ikon seperti Windows 11 */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.taskbar-app-icon:hover {
+  background-color: #979393;
+  transform: scale(1.1);
+}
+
+/* Right-aligned taskbar items */
+.taskbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+}
+
+.date-time {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 12px;
+  color: #000000;
+  background-color: #c0c0c0;
+  padding: 0 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column; /* Format vertikal ala Windows 11 */
+  align-items: center;
+  line-height: 1.4;
+}
+
+.taskbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.taskbar-icon {
+  width: 18px; /* Ikon di kanan lebih besar agar seimbang */
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.taskbar-icon:hover {
+  background-color: #a0a0a0;
+}
+
+
+@media (max-width: 680px) {
+
+  .score, .high-score {
+    font-size: 1.5vmin;
+    padding: 1vmin 2vmin;
+  }
+
+  .start-screen, #play-again {
+    font-size: 2.4vmin;
+  }
+
+  .game-over {
+    padding: 1rem;
+    font-size: 1Zvmin;
+  }
+
+  .game-over h2 {
+    font-size: 2vmin;
+  }
+
+  .game-over p {
+    font-size: 2vmin;
+  }
+
+}
+.dino {
+  height: 15vmin;
+}
+
+.cactus {
+  height: 13vmin;
+}
+
+@media (max-width: 480px) {
+  
+  .score, .high-score {
+    font-size: 1.5vmin;
+    padding: 1vmin 2vmin;
+  }
+
+  .game-over {
+    padding: 1rem;
+    font-size: 1vmin;
+  }
+
+  .game-over h2 {
+    font-size: 1.5vmin;
+  }
+
+  .game-over p {
+    font-size: 1.5vmin;
+  }
+
+  .dino {
+    height: 11vmin;
+  }
+
+  .cactus {
+    height: 10vmin;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .taskbar {
+    height: 45px; /* Tetap tinggi taskbar pada layar kecil */
+    padding: 0 15px; /* Mengurangi padding */
+  }
+
+  .taskbar-apps {
+    position: relative; /* Ubah posisi menjadi relatif */
+    left: 0; /* Pindahkan ke kiri */
+    transform: none; /* Hapus transformasi */
+    justify-content: flex-start; /* Pindahkan ikon ke kiri */
+    gap: 20px; /* Mengurangi jarak antar ikon */
+  }
+
+  .taskbar-app-icon {
+    width: 30px; /* Mengurangi ukuran ikon */
+    height: 30px;
+  }
+
+  .date-time {
+    font-size: 10px; /* Mengurangi ukuran font */
+    padding: 0 8px; /* Mengurangi padding */
+  }
+
+  .taskbar-icon {
+    width: 14px; /* Mengurangi ukuran ikon di kanan */
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .taskbar {
+    height: 45px; /* Tetap tinggi taskbar pada layar kecil */
+    padding: 0 10px; /* Mengurangi padding lebih lanjut */
+  }
+
+  .taskbar-apps {
+    justify-content: flex-start; /* Pastikan ikon tetap di kiri */
+    gap: 10px; /* Mengurangi jarak antar ikon lebih lanjut */
+  }
+
+  .taskbar-app-icon {
+    width: 26px; /* Mengurangi ukuran ikon lebih lanjut */
+    height: 26px;
+  }
+
+  .date-time {
+    font-size: 8px; /* Mengurangi ukuran font lebih lanjut */
+    padding: 0 6px; /* Mengurangi padding lebih lanjut */
+  }
+
+  .taskbar-icon {
+    width: 11px; /* Mengurangi ukuran ikon di kanan lebih lanjut */
+    height: 11px;
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dino Succinct</title>
+  <meta property="og:title" content="Dino Succinct">
+  <meta property="og:description" content="A retro-inspired Dino game with succinct vibes!">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" type="module"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <audio id="jump-sound" src="imgs/jump.wav" preload="auto"></audio>
+  <audio id="gameover-sound" src="imgs/game-over.wav" preload="auto"></audio>
+</head>
+<body>
+  <!-- Window container -->
+  <div class="world" data-world>
+    <!-- Title bar (like a Windows app) -->
+    <div class="title-bar">
+      <span>Dino Succinct</span>
+      <div class="window-controls">
+        <div class="control-button minimize" title="Minimize">—</div>
+        <div class="control-button maximize" title="Maximize">□</div>
+        <div class="control-button close" title="Close">✕</div>
+      </div>
+    </div>
+
+    <!-- Game container -->
+    <div class="game-container">
+      <div class="score-container">
+        <div class="high-score" data-high-score>H: 0</div>
+        <div class="score" data-score>0</div>
+      </div>
+      <div class="start-screen" data-start-screen>Click To Start</div>
+      <img src="imgs/ground.png" class="ground" data-ground>
+      <img src="imgs/ground.png" class="ground" data-ground>
+      <img src="imgs/dino-stationary.png" class="dino" data-dino>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div class="game-over hide" data-game-over>
+      <h2>Game Over</h2>
+      <p><span data-final-score>High Score: 0</span></p>
+    </div>
+  </div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+  <div class="taskbar-apps">
+    <div class="taskbar-app">
+      <a href="https://x.com/EL3NG" target="_blank" class="taskbar-app-icon-link">
+        <img src="imgs/Explorer.svg" alt="App 1" class="taskbar-app-icon">
+      </a>
+    </div>
+    <div class="taskbar-app">
+      <a href="https://x.com/EL3NG" target="_blank" class="taskbar-app-icon-link">
+        <img src="imgs/truthlens.svg" alt="App 2" class="taskbar-app-icon">
+      </a>
+    </div>
+    <div class="taskbar-app">
+      <a href="https://x.com/EL3NG" target="_blank" class="taskbar-app-icon-link">
+        <img src="imgs/Flappy.svg" alt="App 3" class="taskbar-app-icon">
+      </a>
+    </div>
+    <div class="taskbar-app">
+      <a href="https://x.com/EL3NG" target="_blank" class="taskbar-app-icon-link">
+        <img src="imgs/Leaderboard.svg" alt="App 4" class="taskbar-app-icon">
+      </a>
+    </div>
+    <div class="taskbar-app">
+      <a href="https://x.com/EL3NG" target="_blank" class="taskbar-app-icon-link">
+        <img src="imgs/succinctcd2.png" alt="App 5" class="taskbar-app-icon">
+      </a>
+    </div>
+    <div class="taskbar-app">
+      <a href="https://x.com/EL3NG" target="_blank" class="taskbar-app-icon-link">
+        <img src="imgs/Super Prover.svg" alt="App 6" class="taskbar-app-icon">
+      </a>
+    </div>
+  </div>
+
+  <!-- Taskbar right section (ujung kanan) -->
+  <div class="taskbar-right">
+    <div class="taskbar-icons">
+      <div class="battery-icon">
+        <img src="imgs/batery.svg" alt="Battery" class="taskbar-icon">
+      </div>
+      <div class="wifi-icon">
+        <img src="imgs/wifi.svg" alt="WiFi" class="taskbar-icon">
+      </div>
+      <div class="sound-icon">
+        <img src="imgs/sound.svg" alt="Sound" class="taskbar-icon">
+      </div>
+    </div>
+    <div class="date-time" id="date-time">
+      <span id="date"></span> <span id="time"></span>
+    </div>
+  </div>
+</body>
+</html>
