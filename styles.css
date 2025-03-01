@@ -172,7 +172,7 @@ body {
 .cactus {
   position: absolute;
   left: calc(var(--left) * 1%);
-  height: 14vmin;
+  height: 15vmin;
   bottom: 0;
 }
 
@@ -285,11 +285,11 @@ body {
 
 }
 .dino {
-  height: 18vmin;
+  height: 16vmin;
 }
 
 .cactus {
-  height: 17vmin;
+  height: 15vmin;
 }
 
 @media (max-width: 480px) {
@@ -313,11 +313,11 @@ body {
   }
 
   .dino {
-    height: 19vmin;
+    height: 16vmin;
   }
 
   .cactus {
-    height: 18vmin;
+    height: 15vmin;
   }
 }
 
