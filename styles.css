@@ -284,12 +284,16 @@ body {
   }
 
 }
-.dino {
-  height: 16vmin;
-}
 
-.cactus {
-  height: 15vmin;
+
+@media (max-width: 680px) {
+  .dino {
+    height: 19vmin;
+  }
+  
+  .cactus {
+    height: 16vmin;
+  }
 }
 
 @media (max-width: 480px) {
@@ -310,14 +314,6 @@ body {
 
   .game-over p {
     font-size: 1.5vmin;
-  }
-
-  .dino {
-    height: 16vmin;
-  }
-
-  .cactus {
-    height: 15vmin;
   }
 }
 
@@ -375,5 +371,15 @@ body {
   .taskbar-icon {
     width: 11px;
     height: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dino {
+    height: 24vmin;
+  }
+  
+  .cactus {
+    height: 20vmin;
   }
 }
