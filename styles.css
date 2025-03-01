@@ -285,11 +285,11 @@ body {
 
 }
 .dino {
-  height: 15vmin;
+  height: 18vmin;
 }
 
 .cactus {
-  height: 13vmin;
+  height: 17vmin;
 }
 
 @media (max-width: 480px) {
@@ -313,11 +313,11 @@ body {
   }
 
   .dino {
-    height: 11vmin;
+    height: 19vmin;
   }
 
   .cactus {
-    height: 10vmin;
+    height: 18vmin;
   }
 }
 
